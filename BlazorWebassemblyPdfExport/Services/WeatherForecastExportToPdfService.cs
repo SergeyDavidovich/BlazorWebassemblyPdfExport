@@ -31,6 +31,7 @@ namespace BlazorWebassemblyPdfExport.Services
 
             //Add Page to the PDF document.
             PdfPage page = pdfDocument.Pages.Add();
+            PdfGraphics graphics = page.Graphics;
 
             //Creates document bookmarks.
             PdfBookmark bookmark = pdfDocument.Bookmarks.Add("1. Weather Forecast");
@@ -66,6 +67,18 @@ namespace BlazorWebassemblyPdfExport.Services
 
             //Draw PDF grid into the PDF page.
             pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(0, result.Bounds.Bottom + paragraphAfterSpacing));
+
+            //watermark text.
+
+            PdfGraphicsState state = graphics.Save();
+
+            graphics.SetTransparency(0.5f);
+
+            graphics.RotateTransform(-30);
+
+            PdfStandardFont fontWatermark = new PdfStandardFont(PdfFontFamily.Courier, 40);
+
+            graphics.DrawString("SAMPLE", fontWatermark, PdfPens.Red, PdfBrushes.Red, new PointF(100, 200));
 
             MemoryStream memoryStream = new MemoryStream();
 
