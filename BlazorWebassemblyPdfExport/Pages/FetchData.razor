@@ -60,7 +60,7 @@ else
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
-    @functions {
+
         void ExportToPdf()
         {
             int paragraphAfterSpacing = 8;
@@ -110,5 +110,4 @@ else
             JS.SaveAs("Sample.pdf", memoryStream.ToArray());
 
         }
-    }
 }
