@@ -1,2 +1,2 @@
 # BlazorWebassemblyPdfExport
-https://sergeydavidovich.github.io/BlazorWebassemblyPdfExport/
+View demo: https://sergeydavidovich.github.io/BlazorWebassemblyPdfExport/fetchdata
