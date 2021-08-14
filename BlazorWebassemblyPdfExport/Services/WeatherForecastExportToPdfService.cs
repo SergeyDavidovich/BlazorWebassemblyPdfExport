@@ -8,12 +8,20 @@ using Syncfusion.Drawing;
 using Syncfusion.Pdf.Graphics;
 using System.IO;
 using BlazorWebassemblyPdfExport.Models;
+using BlazorWebassemblyPdfExport.Utils;
+
+using Microsoft.JSInterop;
 
 namespace BlazorWebassemblyPdfExport.Services
 {
     public class WeatherForecastExportToPdfService
     {
-      public  void ExportToPdf(IEnumerable<WeatherForecast> forecasts, Microsoft.JSInterop.IJSRuntime JS)
+        IJSRuntime _js;
+        public WeatherForecastExportToPdfService(IJSRuntime js)
+        {
+            _js = js;
+        }
+        public void ExportToPdf(IEnumerable<WeatherForecast> forecasts)
         {
             int paragraphAfterSpacing = 8;
             int cellMargin = 8;
@@ -60,7 +68,7 @@ namespace BlazorWebassemblyPdfExport.Services
             pdfDocument.Save(memoryStream);
 
             // Download the PDF document
-            JS.SaveAs("WeatherForecast.pdf", memoryStream.ToArray());
+            _js.SaveAs("WeatherForecast.pdf", memoryStream.ToArray());
 
         }
     }
