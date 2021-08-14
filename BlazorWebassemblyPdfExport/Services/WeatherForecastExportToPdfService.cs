@@ -11,6 +11,7 @@ using BlazorWebassemblyPdfExport.Models;
 using BlazorWebassemblyPdfExport.Utils;
 
 using Microsoft.JSInterop;
+using Syncfusion.Pdf.Interactive;
 
 namespace BlazorWebassemblyPdfExport.Services
 {
@@ -27,8 +28,12 @@ namespace BlazorWebassemblyPdfExport.Services
             int cellMargin = 8;
 
             PdfDocument pdfDocument = new PdfDocument();
+
             //Add Page to the PDF document.
             PdfPage page = pdfDocument.Pages.Add();
+
+            //Creates document bookmarks.
+            PdfBookmark bookmark = pdfDocument.Bookmarks.Add("1. Weather Forecast");
 
             //Create a new font.
             PdfStandardFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 16);
